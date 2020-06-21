@@ -2,7 +2,8 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const cors = require('cors');
-var cookies = require('cookie-parser');
+const cookies = require('cookie-parser');
+const compression = require('compression');
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const morgan = require('morgan');
@@ -29,7 +30,9 @@ app.use(limiter);
 
 app.use(cookies());
 
-app.use(express.json());
+app.use(compression());
+
+app.use(express.json({ limit: '10kb' }));
 
 app.use(express.static(__dirname + '/public'));
 
