@@ -133,7 +133,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // 3 send email
-  const resetURL = `http://localhost:3000/resetPassword/${resetToken}`;
+  const resetURL = `https://blog-mern-frontend.herokuapp.com/resetPassword/${resetToken}`;
 
   const message = ` Forgot password? Go to the given link and reset your password. ${resetURL}. \n If you don't forget please ignore this email.`;
 
